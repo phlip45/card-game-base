@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://b3rvn7lxnc7q"]
+
+[ext_resource type="Script" uid="uid://scx06nmufd4y" path="res://targeting_prompt.gd" id="1_xemyy"]
+[ext_resource type="Shader" uid="uid://dm8magk58umr2" path="res://crawl.gdshader" id="2_i0tdl"]
+[ext_resource type="Texture2D" uid="uid://cipee0g0jv6td" path="res://assets/img_targeting_line.png" id="3_06jjn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vivmo"]
+shader = ExtResource("2_i0tdl")
+shader_parameter/tex = ExtResource("3_06jjn")
+shader_parameter/speed = 2.749999938532
+
+[node name="TargetingPrompt" type="Control" unique_id=1645906007]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_xemyy")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1317778859]
+visible = false
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_vivmo")
+points = PackedVector2Array(277, 213, 873, 136)
+width = 50.0
+texture = ExtResource("3_06jjn")
+texture_mode = 1
+
+[node name="AcceptBtn" type="Button" parent="." unique_id=138050979]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 501.0
+offset_right = 577.0
+offset_bottom = 586.0
+text = "Accept"
+
+[node name="Start" type="Marker2D" parent="." unique_id=1167050604]
+position = Vector2(277, 213)
+
+[node name="End" type="Marker2D" parent="." unique_id=295919006]
+position = Vector2(873, 136)

@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://bneso6kh0ce0l"]
+
+[ext_resource type="Script" uid="uid://y1vimlyt68al" path="res://main.gd" id="1_272bh"]
+[ext_resource type="PackedScene" uid="uid://bjsda4ulpa63a" path="res://card.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://brggwif16gimb" path="res://action_resolver.gd" id="2_efxa6"]
+[ext_resource type="Script" uid="uid://dayr7wrkev2gx" path="res://card_data.gd" id="3_1bvp3"]
+[ext_resource type="Script" uid="uid://bapd88mgjcncl" path="res://actions/action_data.gd" id="3_5vw27"]
+[ext_resource type="Script" uid="uid://boadxkiymrjxy" path="res://actions/effect_data.gd" id="4_kek77"]
+[ext_resource type="Script" uid="uid://dymf1lebpugrw" path="res://actions/trigger_data.gd" id="5_4c57u"]
+[ext_resource type="Script" uid="uid://bxdiodhjq2k5q" path="res://actions/target_data.gd" id="5_kek77"]
+[ext_resource type="Script" uid="uid://falaw86al2bj" path="res://ui.gd" id="6_7mycd"]
+[ext_resource type="Texture2D" uid="uid://bnstet6ub7gkr" path="res://icon.svg" id="9_4c57u"]
+
+[sub_resource type="Resource" id="Resource_4c57u"]
+script = ExtResource("4_kek77")
+type = 1
+metadata/_custom_type_script = "uid://boadxkiymrjxy"
+
+[sub_resource type="Resource" id="Resource_efxa6"]
+script = ExtResource("5_kek77")
+target_type = 1
+target_count = 1
+metadata/_custom_type_script = "uid://bxdiodhjq2k5q"
+
+[sub_resource type="Resource" id="Resource_dg77c"]
+script = ExtResource("5_4c57u")
+type = 1
+metadata/_custom_type_script = "uid://dymf1lebpugrw"
+
+[sub_resource type="Resource" id="Resource_272bh"]
+script = ExtResource("3_5vw27")
+name = "Damage Single Target"
+trigger = SubResource("Resource_dg77c")
+effect = SubResource("Resource_4c57u")
+target = SubResource("Resource_efxa6")
+effect_amount_1 = 5
+metadata/_custom_type_script = "uid://bapd88mgjcncl"
+
+[sub_resource type="Resource" id="Resource_lquwl"]
+script = ExtResource("3_1bvp3")
+name = "Fiyahball"
+description = "fasdkjfksladjf aslk;djf la;skdjf aslk;dfj a;slkdjf a;slkdjf alskdjf lasjkdf l;kasjdf lk;asjdf lkasj dflkasj dflkasj dflkasj dflkjas dlfkj aslkdfj alsk dfjlkas jdflkas jdflkj asdlkfj sald sadlkfj aslkdfj alskdjf lkasjdf klasdjf aslkdfj lkas djflkas jdflk jasdf"
+cost = 1
+power = 2
+actions = Array[ExtResource("3_5vw27")]([SubResource("Resource_272bh")])
+texture = ExtResource("9_4c57u")
+metadata/_custom_type_script = "uid://dayr7wrkev2gx"
+
+[sub_resource type="Gradient" id="Gradient_7mycd"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_272bh"]
+gradient = SubResource("Gradient_7mycd")
+width = 15
+height = 4
+
+[node name="Main" type="Node2D" unique_id=417440234 node_paths=PackedStringArray("cards", "ui")]
+script = ExtResource("1_272bh")
+cards = [NodePath("Card")]
+ui = NodePath("UI")
+
+[node name="ActionResolver" type="Node" parent="." unique_id=2028338320]
+script = ExtResource("2_efxa6")
+metadata/_custom_type_script = "uid://brggwif16gimb"
+
+[node name="Card" parent="." unique_id=139393862 instance=ExtResource("1_ig7tw")]
+position = Vector2(277, 213)
+data = SubResource("Resource_lquwl")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1739506916 node_paths=PackedStringArray("crosshair", "main", "current_action")]
+script = ExtResource("6_7mycd")
+crosshair = NodePath("Crosshair")
+main = NodePath("..")
+current_action = NodePath("CurrentAction")
+
+[node name="Crosshair" type="Control" parent="UI" unique_id=1169060157]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Crosshair" unique_id=1517061392]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -2.0
+offset_right = -2.0
+offset_bottom = 2.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_272bh")
+
+[node name="TextureRect3" type="TextureRect" parent="UI/Crosshair" unique_id=1441854665]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 17.0
+offset_bottom = 2.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_272bh")
+
+[node name="TextureRect4" type="TextureRect" parent="UI/Crosshair" unique_id=236911440]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 17.0
+offset_bottom = 6.0
+rotation = 1.5707964
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_272bh")
+
+[node name="TextureRect6" type="TextureRect" parent="UI/Crosshair" unique_id=2017642634]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -17.0
+offset_right = 17.0
+offset_bottom = -13.0
+rotation = 1.5707964
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_272bh")
+
+[node name="CurrentAction" type="RichTextLabel" parent="UI" unique_id=964319949]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -244.0
+offset_right = 244.0
+offset_bottom = 40.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "Current Action"
+horizontal_alignment = 1
+vertical_alignment = 1

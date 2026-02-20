@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://do7bajq071wip"]
+
+[ext_resource type="Script" uid="uid://falaw86al2bj" path="res://ui.gd" id="1_vkava"]
+
+[sub_resource type="Gradient" id="Gradient_7mycd"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_272bh"]
+gradient = SubResource("Gradient_7mycd")
+width = 15
+height = 4
+
+[node name="UI" type="CanvasLayer" unique_id=1585490542 node_paths=PackedStringArray("crosshair", "current_action")]
+script = ExtResource("1_vkava")
+crosshair = NodePath("Crosshair")
+current_action = NodePath("CurrentAction")
+
+[node name="Crosshair" type="Control" parent="." unique_id=1861169003]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Crosshair" unique_id=1077198466]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -2.0
+offset_right = -2.0
+offset_bottom = 2.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_272bh")
+
+[node name="TextureRect3" type="TextureRect" parent="Crosshair" unique_id=383794751]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 17.0
+offset_bottom = 2.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_272bh")
+
+[node name="TextureRect4" type="TextureRect" parent="Crosshair" unique_id=1453952080]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 17.0
+offset_bottom = 6.0
+rotation = 1.5707964
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_272bh")
+
+[node name="TextureRect6" type="TextureRect" parent="Crosshair" unique_id=1023717887]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -17.0
+offset_right = 17.0
+offset_bottom = -13.0
+rotation = 1.5707964
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_272bh")
+
+[node name="CurrentAction" type="RichTextLabel" parent="." unique_id=1099921587]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -244.0
+offset_right = 244.0
+offset_bottom = 40.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "Current Action"
+horizontal_alignment = 1
+vertical_alignment = 1
