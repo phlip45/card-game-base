@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d1rsrhvtt02wu"]
+
+[ext_resource type="Script" uid="uid://bujm6kt87fu78" path="res://hundredmilliomn.gd" id="1_tjkvm"]
+[ext_resource type="Material" uid="uid://bvf7h2c7suv84" path="res://test/Material.008.material" id="2_2xvrs"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tjkvm"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_2xvrs"]
+sky_material = SubResource("ProceduralSkyMaterial_tjkvm")
+
+[sub_resource type="Environment" id="Environment_mktw1"]
+background_mode = 2
+sky = SubResource("Sky_2xvrs")
+tonemap_mode = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2xvrs"]
+
+[node name="Node3D" type="Node3D" unique_id=856941860]
+script = ExtResource("1_tjkvm")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1829180786]
+environment = SubResource("Environment_mktw1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2136541503]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=392339716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14046717, 0)
+material_override = ExtResource("2_2xvrs")
+mesh = SubResource("ArrayMesh_2xvrs")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1652145379]
+transform = Transform3D(-0.20791161, 0.37360126, -0.90398824, 0, 0.9241839, 0.38194776, 0.97814757, 0.07941137, -0.19214857, -33.416, 21.385864, 14.991166)

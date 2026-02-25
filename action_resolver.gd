@@ -33,13 +33,17 @@ func finish_resolving_stack():
 
 func resolve_packet(packet:Packet):
 	# check if the effect targets anything
-	if packet.action.target:
+	if packet.action.target_data:
 		#var targets:Array[Card] = packet.action.target.
-		await ui.target_single_card(packet.source,packet.action.target)
-		pass
+		var target:Card = await ui.target_single_card(packet.source,packet.action)
+		if !target:
+			#How do we handle failed to get targets?
+			#Currently we will just bail
+			return
+		packet.action.target_data.targets = [target]
+	else:
+		print("Action %s did not have any target data." % packet.action.name)
 	Effect.type_to_effect[packet.action.effect.type].call(packet.source,packet.action)
-
-
 
 class Packet:
 	var source:Card

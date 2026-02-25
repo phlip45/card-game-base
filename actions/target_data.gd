@@ -6,3 +6,4 @@ class_name TargetData
 @export var count:int = 1
 ## Not Implemented for now
 @export var filter:String 
+var targets:Array[Card] = []

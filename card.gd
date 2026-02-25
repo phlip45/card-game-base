@@ -26,10 +26,17 @@ signal turn_ended
 
 signal clicked
 
+static func create() -> Card:
+	var card = load("res://card.tscn").instantiate()
+	return card
+
 func _ready() -> void:
 	if !texture: 
 		push_error("Missing Texture in Card")
 	sprite_2d.texture = texture
+	var select_card_callable:Callable = stack.ui.select_card.bind(self)
+	clicked.connect(select_card_callable)
+	tree_exiting.connect(clicked.disconnect.bind(select_card_callable))
 	for action:ActionData in data.actions:
 		handle_action_setup(action)
 
@@ -58,6 +65,9 @@ func attach_action(action:ActionData):
 			healed.connect(callable)
 
 func die():
+	var connections:Array[Dictionary] = get_incoming_connections()
+	for connection in connections:
+		connection.signal.disconnect(connection.callable)
 	var tween:Tween = create_tween()
 	tween.tween_property(self, "position", Vector2(position.x, -100), 1)
 	tween.tween_property(self, "position", Vector2(position.x, 1280), 2)
@@ -70,10 +80,8 @@ func _on_button_pressed() -> void:
 func handle_action_setup(action:ActionData):
 	attach_action(action)
 
-
 func _on_button_mouse_entered() -> void:
 	CardEventBus.on_card_entered(self)
-
 
 func _on_button_mouse_exited() -> void:
 	CardEventBus.on_card_exited(self)

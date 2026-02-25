@@ -5,12 +5,11 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for card in cards:
-		card.clicked.connect(select_card.bind(card))
+	for i in 5:
+		var card = Card.create()
+		card.position = Vector2(randi_range(0,1280),randi_range(0,720))
+		add_child(card)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
 
 func select_card(card:Card):
 	ui.select_card(card)

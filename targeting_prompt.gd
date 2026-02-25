@@ -14,7 +14,7 @@ class_name UITargetingPrompt
 var state:State
 const TARGETING_PROMPT_UI = preload("uid://b3rvn7lxnc7q")
 
-signal finished
+signal finished(selected_card:Card)
 
 enum State{
 	NULL, SELECTION, HOVERING
@@ -35,7 +35,15 @@ func _ready() -> void:
 	CardEventBus.card_exited.connect(blur_card)
 
 func _process(delta: float) -> void:
-	pass
+	# Don't care to process if you didn't click
+	if !Input.is_action_just_released("click"): return
+	if target:
+		print("Chose target %s" % target)
+		finish(target)
+
+func finish(card:Card):
+	finished.emit(card)
+	queue_free()
 
 func focus_card(card:Card):
 	if card != source:
@@ -45,7 +53,6 @@ func focus_card(card:Card):
 func blur_card(card:Card):
 	target = null
 	calc_and_draw_path()
-
 
 func calc_and_draw_path():
 	line_2d.clear_points()

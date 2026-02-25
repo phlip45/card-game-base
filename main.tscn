@@ -1,91 +1,16 @@
 [gd_scene format=3 uid="uid://bneso6kh0ce0l"]
 
 [ext_resource type="Script" uid="uid://y1vimlyt68al" path="res://main.gd" id="1_272bh"]
-[ext_resource type="PackedScene" uid="uid://bjsda4ulpa63a" path="res://card.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://brggwif16gimb" path="res://action_resolver.gd" id="2_efxa6"]
-[ext_resource type="Script" uid="uid://dayr7wrkev2gx" path="res://card_data.gd" id="3_1bvp3"]
-[ext_resource type="Script" uid="uid://bapd88mgjcncl" path="res://actions/action_data.gd" id="3_5vw27"]
-[ext_resource type="Script" uid="uid://boadxkiymrjxy" path="res://actions/effect_data.gd" id="4_kek77"]
-[ext_resource type="Script" uid="uid://dymf1lebpugrw" path="res://actions/trigger_data.gd" id="5_4c57u"]
-[ext_resource type="Script" uid="uid://bxdiodhjq2k5q" path="res://actions/target_data.gd" id="5_kek77"]
-[ext_resource type="Texture2D" uid="uid://bnstet6ub7gkr" path="res://icon.svg" id="9_4c57u"]
 [ext_resource type="PackedScene" uid="uid://do7bajq071wip" path="res://ui/ui.tscn" id="10_4c57u"]
 
-[sub_resource type="Animation" id="Animation_4c57u"]
-
-[sub_resource type="Resource" id="Resource_4c57u"]
-script = ExtResource("4_kek77")
-type = 6
-animation = SubResource("Animation_4c57u")
-metadata/_custom_type_script = "uid://boadxkiymrjxy"
-
-[sub_resource type="Resource" id="Resource_efxa6"]
-script = ExtResource("5_kek77")
-target_count = 1
-metadata/_custom_type_script = "uid://bxdiodhjq2k5q"
-
-[sub_resource type="Resource" id="Resource_dg77c"]
-script = ExtResource("5_4c57u")
-type = 1
-metadata/_custom_type_script = "uid://dymf1lebpugrw"
-
-[sub_resource type="Resource" id="Resource_272bh"]
-script = ExtResource("3_5vw27")
-name = "Damage Single Target"
-trigger = SubResource("Resource_dg77c")
-effect = SubResource("Resource_4c57u")
-target = SubResource("Resource_efxa6")
-metadata/_custom_type_script = "uid://bapd88mgjcncl"
-
-[sub_resource type="Resource" id="Resource_lquwl"]
-script = ExtResource("3_1bvp3")
-name = "Fiyahball"
-description = "Something Something Something"
-cost = 1
-power = 2
-actions = Array[ExtResource("3_5vw27")]([SubResource("Resource_272bh")])
-texture = ExtResource("9_4c57u")
-metadata/_custom_type_script = "uid://dayr7wrkev2gx"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4c57u"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
-
-[node name="Main" type="Node2D" unique_id=417440234 node_paths=PackedStringArray("cards", "ui")]
+[node name="Main" type="Node2D" unique_id=417440234 node_paths=PackedStringArray("ui")]
 script = ExtResource("1_272bh")
-cards = [NodePath("Card")]
 ui = NodePath("UI")
 
 [node name="ActionResolver" type="Node" parent="." unique_id=2028338320]
 script = ExtResource("2_efxa6")
 metadata/_custom_type_script = "uid://brggwif16gimb"
-
-[node name="Card" parent="." unique_id=139393862 instance=ExtResource("1_ig7tw")]
-position = Vector2(277, 213)
-data = SubResource("Resource_lquwl")
-
-[node name="Card2" parent="." unique_id=1963791628 instance=ExtResource("1_ig7tw")]
-modulate = Color(1, 0.13725491, 0.011764706, 1)
-position = Vector2(873, 136)
-data = SubResource("Resource_lquwl")
-texture = SubResource("CompressedTexture2D_4c57u")
-
-[node name="Card3" parent="." unique_id=1925331343 instance=ExtResource("1_ig7tw")]
-modulate = Color(1, 0.13725491, 0.011764706, 1)
-position = Vector2(749, 316)
-data = SubResource("Resource_lquwl")
-texture = SubResource("CompressedTexture2D_4c57u")
-
-[node name="Card4" parent="." unique_id=1865422351 instance=ExtResource("1_ig7tw")]
-modulate = Color(1, 0.13725491, 0.011764706, 1)
-position = Vector2(933, 384)
-data = SubResource("Resource_lquwl")
-texture = SubResource("CompressedTexture2D_4c57u")
-
-[node name="Card5" parent="." unique_id=1438875038 instance=ExtResource("1_ig7tw")]
-modulate = Color(1, 0.13725491, 0.011764706, 1)
-position = Vector2(523, 466)
-data = SubResource("Resource_lquwl")
-texture = SubResource("CompressedTexture2D_4c57u")
 
 [node name="UI" parent="." unique_id=1585490542 node_paths=PackedStringArray("main") instance=ExtResource("10_4c57u")]
 main = NodePath("..")
