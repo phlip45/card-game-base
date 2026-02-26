@@ -27,7 +27,7 @@ signal turn_ended
 signal clicked
 
 static func create() -> Card:
-	var card = load("res://card.tscn").instantiate()
+	var card = load("res://cards/card.tscn").instantiate()
 	return card
 
 func _ready() -> void:
